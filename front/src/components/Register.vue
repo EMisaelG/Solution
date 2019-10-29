@@ -13,7 +13,10 @@
       v-model="password"
       placeholder="password" />
       <br>
-      <button>Registro</button>
+      <button
+      @click="register">
+      Registro
+      </button>
   </div>
 </template>
 
@@ -21,10 +24,29 @@
 export default {
   data () {
     return {
-      email: 'abd',
-      password: '123'
+      email: '',
+      password: ''
     }
-  }
+  }, 
+  /*
+  watch: {
+    email (value) {
+      console.log('Correo cambiado', value)
+    }
+  }, 
+  */
+  methods: {
+    register () {
+      console.log('diste click al boton', this.email, this.password)
+    }
+  }, 
+  /*
+  mounted () {
+    setTimeout(() => {
+      this.email = 'Hola'
+    }, 2000)
+  } 
+  */
 }
 </script>
 
