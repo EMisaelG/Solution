@@ -13,6 +13,8 @@
       v-model="password"
       placeholder="password" />
       <br>
+      <div class="error" v-html="error"></div>
+      <br>
       <button
       @click="register">
       Registro
@@ -26,7 +28,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   }, 
   /*
@@ -38,11 +41,15 @@ export default {
   */
   methods: {
     async register () {
+      try {
       //const response = await AuthenticationServices.register ({
       await AuthenticationServices.register ({
         email: this.email,
         password: this.password
       })
+    } catch (error) {
+      this.error = error.response.data.error
+    }
       //console.log (response.data)
       //console.log('diste click al boton', this.email, this.password)
     }
@@ -59,5 +66,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .error {
+    color:red;
+  }
 </style>
