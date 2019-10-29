@@ -9,8 +9,8 @@ app.use(morgan('combined'))
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/status', function (req, res) {
-  res.send('Behold The MEVN Stack!')
+app.post('/register', function (req, res) {
+  res.send(`Hola ${req.body.email}, Usuario Registrado!`)
 })
 
 app.listen(3000, function (err) {
