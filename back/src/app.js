@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const {sequelize} = require('./models')
+const config = require('./config/config')
 
 const app = express()
 
@@ -9,14 +11,13 @@ app.use(morgan('combined'))
 app.use(cors())
 app.use(bodyParser.json())
 
-app.post('/register', function (req, res) {
-  res.send(`Hola ${req.body.email}, Usuario Registrado!`)
+require('./routes')(app)
+
+sequelize.sync()
+  .then(() => {
+    app.listen(config.port) 
+    console.log(`El servidor esta en ${config.port}`)
+
 })
 
-app.listen(3000, function (err) {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('listen:3000')
-  }
-})
+
