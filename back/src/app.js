@@ -9,14 +9,14 @@ app.use(morgan('combined'))
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/s', (req, res) => {
-  res.json({
-    message: 'Behold The MEVN Stack!'
-  })
+app.get('/status', function (req, res) {
+  res.send('Behold The MEVN Stack!')
 })
 
-const port = process.env.PORT || 8081
-
-app.listen(port, () => {
-  console.log(`listening on ${port}`)
+app.listen(3000, function (err) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log('listen:3000')
+  }
 })
