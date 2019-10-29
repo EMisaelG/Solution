@@ -38,11 +38,12 @@ export default {
   */
   methods: {
     async register () {
-      const response = await AuthenticationServices.register ({
+      //const response = await AuthenticationServices.register ({
+        await AuthenticationServices.register ({
         email: this.email,
         password: this.password
       })
-      console.log (response.data)
+      //console.log (response.data)
       // console.log('diste click al boton', this.email, this.password)
     }
   }, 
