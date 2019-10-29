@@ -1,6 +1,19 @@
 <template>
   <div>
     <h1> Registro </h1>
+    <input
+    type="email"
+    name="email"
+    v-model="email"
+    placeholder="email" />
+    <br>
+    <input
+      type="password"
+      name="password"
+      v-model="password"
+      placeholder="password" />
+      <br>
+      <button>Registro</button>
   </div>
 </template>
 
@@ -8,6 +21,8 @@
 export default {
   data () {
     return {
+      email: 'abd',
+      password: '123'
     }
   }
 }
