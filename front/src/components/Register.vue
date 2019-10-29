@@ -1,25 +1,32 @@
 <template>
-  <div>
-    <h1> Registro </h1>
-    <input
-    type="email"
-    name="email"
-    v-model="email"
-    placeholder="email" />
-    <br>
-    <input
-      type="password"
-      name="password"
+  <v-card class="d-flex pa-2">
+    <div>
+      <v-toolbar dense dark>
+        <v-toolbar-title>
+          Registro
+        </v-toolbar-title>
+      </v-toolbar>
+    </div>
+    <v-col cols="12" sm="6">
+      <v-text-field
+      label="Email"
+      v-model="email"
+      placeholder="email"
+      ></v-text-field>
+    </v-col>
+    <v-col cols="12" sm="6">
+      <v-text-field
+      label="Password"
       v-model="password"
-      placeholder="password" />
-      <br>
+      placeholder="password"
+      ></v-text-field>
+    </v-col>
       <div class="error" v-html="error"></div>
-      <br>
-      <button
+      <v-btn dark
       @click="register">
       Registro
-      </button>
-  </div>
+      </v-btn>
+  </v-card>
 </template>
 
 <script>
@@ -31,40 +38,22 @@ export default {
       password: '',
       error: null
     }
-  }, 
-  /*
-  watch: {
-    email (value) {
-      console.log('Correo cambiado', value)
-    }
-  }, 
-  */
+  },
   methods: {
     async register () {
       try {
-      //const response = await AuthenticationServices.register ({
-      await AuthenticationServices.register ({
-        email: this.email,
-        password: this.password
-      })
-    } catch (error) {
-      this.error = error.response.data.error
+        await AuthenticationServices.register({
+          email: this.email,
+          password: this.password
+        })
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     }
-      //console.log (response.data)
-      //console.log('diste click al boton', this.email, this.password)
-    }
-  }, 
-  /*
-  mounted () {
-    setTimeout(() => {
-      this.email = 'Hola'
-    }, 2000)
-  } 
-  */
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .error {
     color:red;
